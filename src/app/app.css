@@ -141,6 +141,22 @@ h1 {
   background-color: #f0fdf4;
 }
 
+.actividad button {
+  margin-top: 14px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #005ca2;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.actividad button:hover {
+  background-color: #013972;
+}
+
 @media (max-width: 520px) {
   .actividad-encabezado {
     align-items: flex-start;
