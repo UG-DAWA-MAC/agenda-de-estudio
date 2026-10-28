@@ -86,6 +86,58 @@ h1 {
   text-align: center;
 }
 
+
+.lista-actividades {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.actividad {
+  padding: 16px;
+  border: 1px solid #dfe9f0;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.actividad-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.actividad-encabezado h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.prioridad {
+  padding: 5px 9px;
+  border-radius: 5px;
+  background: #e5f6fb;
+  color: #005ca2;
+  font-size: 12px;
+}
+
+.nombre-actividad {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.detalle {
+  margin-bottom: 0;
+  color: #60788b;
+  font-size: 12px;
+}
+
+@media (max-width: 520px) {
+  .actividad-encabezado {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 520px) {
   .pagina {
     width: calc(100% - 28px);
