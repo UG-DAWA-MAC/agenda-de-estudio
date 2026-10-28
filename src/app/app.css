@@ -157,6 +157,12 @@ h1 {
   background-color: #013972;
 }
 
+.mensaje-pendientes {
+  margin: 16px 0 0;
+  color: #60788b;
+  font-size: 13px;
+}
+
 @media (max-width: 520px) {
   .actividad-encabezado {
     align-items: flex-start;
