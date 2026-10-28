@@ -7,13 +7,26 @@
   <section class="panel-agenda">
     <div class="panel-encabezado">
       <h2>Mis actividades</h2>
-      <span class="contador">Mi agenda</span>
+      <span class="contador">{{ actividades.length }} actividades</span>
     </div>
 
-    <div class="estado-inicial">
-      <span class="estado-icono">＋</span>
-      <h3>Todo por comenzar</h3>
-      <p>Tus actividades aparecerán aquí.</p>
+    <div class="lista-actividades">
+      <article class="actividad" *ngFor="let item of actividades">
+        <div class="actividad-encabezado">
+          <h3>{{ item.materia }}</h3>
+          <span class="prioridad">{{ item.prioridad }}</span>
+        </div>
+
+        <p class="nombre-actividad">{{ item.actividad }}</p>
+
+        <p class="detalle" *ngIf="item.fechaEntrega">
+          Fecha de entrega: {{ item.fechaEntrega }}
+        </p>
+
+        <p class="detalle" *ngIf="item.observaciones">
+          {{ item.observaciones }}
+        </p>
+      </article>
     </div>
   </section>
 
