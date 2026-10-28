@@ -1,0 +1,111 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f5f9fc;
+  font-family: Arial, sans-serif;
+  color: #013972;
+}
+
+.pagina {
+  width: min(100% - 32px, 850px);
+  margin: auto;
+  padding: 24px 0 16px;
+}
+
+.bienvenida {
+  padding: 16px 0 24px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4vw, 36px);
+}
+
+.descripcion {
+  margin: 0;
+  color: #60788b;
+  font-size: 14px;
+}
+
+.panel-agenda {
+  padding: 20px;
+  border: 1px solid #dfe9f0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.panel-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-encabezado h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.contador {
+  padding: 6px 10px;
+  border-radius: 5px;
+  background: #e5f6fb;
+  color: #005ca2;
+  font-size: 12px;
+}
+
+.estado-inicial {
+  margin-top: 18px;
+  padding: 24px 12px;
+  border: 1px dashed #b8d5e4;
+  border-radius: 6px;
+  background: #f8fbfd;
+  text-align: center;
+}
+
+.estado-icono {
+  color: #1a8db3;
+  font-size: 26px;
+}
+
+.estado-inicial h3 {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.estado-inicial p {
+  margin: 0;
+  color: #60788b;
+  font-size: 13px;
+}
+
+.pie {
+  padding-top: 18px;
+  color: #1a8db3;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .pagina {
+    width: calc(100% - 28px);
+    padding-top: 16px;
+  }
+
+  .bienvenida {
+    padding: 12px 0 20px;
+  }
+
+  .panel-agenda {
+    padding: 16px;
+  }
+
+  .panel-encabezado {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .estado-inicial {
+    padding: 20px 10px;
+  }
+}
