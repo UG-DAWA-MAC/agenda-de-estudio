@@ -11,7 +11,14 @@
     </div>
 
     <div class="lista-actividades">
-      <article class="actividad" *ngFor="let item of actividades">
+      <article
+        class="actividad"
+        *ngFor="let item of actividades"
+        [ngClass]="{
+          'actividad-completada': item.completada,
+          'actividad-pendiente': !item.completada,
+        }"
+      >
         <div class="actividad-encabezado">
           <h3>{{ item.materia }}</h3>
           <span class="prioridad">{{ item.prioridad }}</span>
@@ -19,9 +26,7 @@
 
         <p class="nombre-actividad">{{ item.actividad }}</p>
 
-        <p class="detalle" *ngIf="item.fechaEntrega">
-          Fecha de entrega: {{ item.fechaEntrega }}
-        </p>
+        <p class="detalle" *ngIf="item.fechaEntrega">Fecha de entrega: {{ item.fechaEntrega }}</p>
 
         <p class="detalle" *ngIf="item.observaciones">
           {{ item.observaciones }}
@@ -30,7 +35,5 @@
     </div>
   </section>
 
-  <footer class="pie">
-    Hecho con 💙 para aprender
-  </footer>
+  <footer class="pie">Hecho con 💙 para aprender</footer>
 </main>

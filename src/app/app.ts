@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, NgClass } from '@angular/common';
 
 interface ActividadEstudio {
   id: number;
@@ -14,7 +14,7 @@ interface ActividadEstudio {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgClass],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
