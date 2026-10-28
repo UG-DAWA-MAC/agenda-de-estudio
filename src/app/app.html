@@ -31,6 +31,10 @@
         <p class="detalle" *ngIf="item.observaciones">
           {{ item.observaciones }}
         </p>
+
+        <button type="button" (click)="cambiarEstado(item)">
+          {{ item.completada ? 'Marcar como pendiente' : 'Marcar como completada' }}
+        </button>
       </article>
     </div>
   </section>

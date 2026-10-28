@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgFor, NgClass } from '@angular/common';
+import { NgFor, NgIf, NgClass } from '@angular/common';
 
 interface ActividadEstudio {
   id: number;
@@ -14,7 +14,7 @@ interface ActividadEstudio {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor, NgClass],
+  imports: [NgFor, NgIf, NgClass],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -67,4 +67,8 @@ export class App {
       fechaEntrega: '2026-11-05',
     },
   ];
+
+  cambiarEstado(actividad: ActividadEstudio): void {
+    actividad.completada = !actividad.completada;
+  }
 }
