@@ -71,4 +71,8 @@ export class App {
   cambiarEstado(actividad: ActividadEstudio): void {
     actividad.completada = !actividad.completada;
   }
+
+  hayActividadesPendientes(): boolean {
+    return this.actividades.some((actividad) => !actividad.completada);
+  }
 }

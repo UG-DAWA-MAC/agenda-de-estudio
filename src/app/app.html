@@ -10,6 +10,10 @@
       <span class="contador">{{ actividades.length }} actividades</span>
     </div>
 
+    <p class="mensaje-pendientes" *ngIf="hayActividadesPendientes()">
+      Tienes actividades de estudio pendientes.
+    </p>
+
     <div class="lista-actividades">
       <article
         class="actividad"
