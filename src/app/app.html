@@ -1,47 +1,139 @@
 <main class="pagina">
-  <section class="bienvenida">
-    <h1>{{ titulo }}</h1>
-    <p class="descripcion">{{ descripcion }}</p>
-  </section>
-
-  <section class="panel-agenda">
-    <div class="panel-encabezado">
-      <h2>Mis actividades</h2>
-      <span class="contador">{{ actividades.length }} actividades</span>
-    </div>
-
-    <p class="mensaje-pendientes" *ngIf="hayActividadesPendientes()">
-      Tienes actividades de estudio pendientes.
-    </p>
-
-    <div class="lista-actividades">
-      <article
-        class="actividad"
-        *ngFor="let item of actividades"
-        [ngClass]="{
-          'actividad-completada': item.completada,
-          'actividad-pendiente': !item.completada,
-        }"
-      >
-        <div class="actividad-encabezado">
-          <h3>{{ item.materia }}</h3>
-          <span class="prioridad">{{ item.prioridad }}</span>
+  <div class="distribucion">
+    <aside class="panel-lateral">
+      <section class="resumen-panel">
+        <div class="titulo-resumen">
+          <div>
+            <h1>Mis actividades</h1>
+            <p>Administra tus tareas y sigue tu progreso.</p>
+          </div>
         </div>
 
-        <p class="nombre-actividad">{{ item.actividad }}</p>
+        <div class="resumen-total">
+          <mat-icon aria-hidden="true">assignment</mat-icon>
+          <span>{{ actividades.length }} actividades</span>
+        </div>
 
-        <p class="detalle" *ngIf="item.fechaEntrega">Fecha de entrega: {{ item.fechaEntrega }}</p>
+        <mat-divider></mat-divider>
 
-        <p class="detalle" *ngIf="item.observaciones">
-          {{ item.observaciones }}
-        </p>
+        <div class="estadisticas">
+          <div class="estadistica">
+            <span class="estadistica-numero">
+              {{ actividades.length }}
+            </span>
+            <span class="estadistica-label">Total</span>
+          </div>
 
-        <button type="button" (click)="cambiarEstado(item)">
-          {{ item.completada ? 'Marcar como pendiente' : 'Marcar como completada' }}
-        </button>
-      </article>
-    </div>
-  </section>
+          <div class="estadistica">
+            <span class="estadistica-numero pendientes">
+              {{ actividadesPendientes }}
+            </span>
+            <span class="estadistica-label">Pendientes</span>
+          </div>
 
-  <footer class="pie">Hecho con 💙 para aprender</footer>
+          <div class="estadistica">
+            <span class="estadistica-numero completadas">
+              {{ actividadesCompletadas }}
+            </span>
+            <span class="estadistica-label">Completadas</span>
+          </div>
+        </div>
+
+        <div class="mensaje-pendientes" *ngIf="hayActividadesPendientes()">
+          <mat-icon aria-hidden="true">schedule</mat-icon>
+
+          <span>
+            Tienes {{ actividadesPendientes }}
+            actividades por completar.
+          </span>
+        </div>
+
+        <div class="mensaje-todo-listo" *ngIf="!hayActividadesPendientes()">
+          <mat-icon aria-hidden="true">check_circle</mat-icon>
+          <span>¡Todas tus actividades están completadas!</span>
+        </div>
+      </section>
+    </aside>
+
+    <section class="panel-actividades">
+      <div class="encabezado-actividades">
+        <div>
+          <h2>Lista de actividades</h2>
+          <p>Consulta tus tareas y actualiza su estado.</p>
+        </div>
+      </div>
+
+      <div class="lista-actividades">
+        <mat-card
+          appearance="outlined"
+          class="actividad"
+          *ngFor="let item of actividades"
+          [ngClass]="{
+            'actividad-completada': item.completada,
+            'actividad-pendiente': !item.completada,
+          }"
+        >
+          <mat-card-content>
+            <div class="actividad-encabezado">
+              <span class="materia">{{ item.materia }}</span>
+
+              <span class="prioridad" [ngClass]="'prioridad-' + item.prioridad.toLowerCase()">
+                <mat-icon aria-hidden="true">
+                  {{ obtenerIconoPrioridad(item.prioridad) }}
+                </mat-icon>
+                {{ item.prioridad }}
+              </span>
+            </div>
+
+            <h3 class="nombre-actividad">
+              {{ item.actividad }}
+            </h3>
+
+            <p class="detalle" *ngIf="item.observaciones">
+              <mat-icon aria-hidden="true">description</mat-icon>
+              <span>{{ item.observaciones }}</span>
+            </p>
+
+            <div class="actividad-pie">
+              <span class="fecha" *ngIf="item.fechaEntrega">
+                <mat-icon aria-hidden="true">calendar_today</mat-icon>
+                {{ item.fechaEntrega }}
+              </span>
+
+              <span class="estado">
+                <mat-icon aria-hidden="true">
+                  {{ item.completada ? 'check_circle' : 'schedule' }}
+                </mat-icon>
+
+                {{ item.completada ? 'Completada' : 'Pendiente' }}
+              </span>
+            </div>
+
+            <button
+              mat-flat-button
+              type="button"
+              class="boton-estado"
+              [ngClass]="{
+                'boton-completar': !item.completada,
+                'boton-reabrir': item.completada,
+              }"
+              (click)="cambiarEstado(item)"
+            >
+              <mat-icon aria-hidden="true">
+                {{ item.completada ? 'refresh' : 'check' }}
+              </mat-icon>
+
+              {{ item.completada ? 'Reabrir actividad' : 'Completar actividad' }}
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </section>
+  </div>
+
+  <footer class="pie">
+    <span>DAWA</span>
+    <span class="separador-pie"></span>
+    <span>Hecho con 💙 para aprender</span>
+  </footer>
 </main>

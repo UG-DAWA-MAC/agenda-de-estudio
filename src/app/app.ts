@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+
 interface ActividadEstudio {
   id: number;
   materia: string;
@@ -14,14 +20,20 @@ interface ActividadEstudio {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass],
+  imports: [
+    NgFor,
+    NgIf,
+    NgClass,
+    MatCardModule,
+    MatChipsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  titulo = 'Agenda de estudio';
-  descripcion = 'Organiza tu tiempo y alcanza tus metas.';
-
   actividades: ActividadEstudio[] = [
     {
       id: 1,
@@ -72,7 +84,28 @@ export class App {
     actividad.completada = !actividad.completada;
   }
 
+  get actividadesPendientes(): number {
+    return this.actividades.filter((actividad) => !actividad.completada).length;
+  }
+
+  get actividadesCompletadas(): number {
+    return this.actividades.filter((actividad) => actividad.completada).length;
+  }
+
   hayActividadesPendientes(): boolean {
-    return this.actividades.some((actividad) => !actividad.completada);
+    return this.actividadesPendientes > 0;
+  }
+
+  obtenerIconoPrioridad(prioridad: string): string {
+    switch (prioridad.toLowerCase()) {
+      case 'alta':
+        return 'keyboard_double_arrow_up';
+      case 'media':
+        return 'drag_handle';
+      case 'baja':
+        return 'keyboard_double_arrow_down';
+      default:
+        return 'flag';
+    }
   }
 }
